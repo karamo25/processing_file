@@ -26,14 +26,19 @@ def total_words(hist):    #sums up the number of values from the dict hist, whic
 def total_different_words(hist):    #return the length of the dictionry hist, which is the total number of different words
   return len(hist)
   
-def most_common(hist):
+def most_common(hist,top):
   d = []
   for key, var in hist.items():
     d.append((val, key))
   d.sort(reverse=True)
-  return d
+  
+  print 'The top', top, 'most common words are: \n'
+  for freq, word in d[0:top]:
+    print word, '\t', freq
+    
 if _name_ == '_main_':
   hist = process_file('words.txt')
   print 'Total Words: ', total_words(hist)
   print 'Total Different Word: ', total_different_words(hist)
+  most_common(hist,top)
   
