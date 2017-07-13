@@ -1,3 +1,4 @@
+
 import string 
 
 def process_file(filename):
@@ -25,6 +26,12 @@ def total_words(hist):    #sums up the number of values from the dict hist, whic
 def total_different_words(hist):    #return the length of the dictionry hist, which is the total number of different words
   return len(hist)
   
+def most_common(hist):
+  d = []
+  for key, var in hist.items():
+    d.append((val, key))
+  d.sort(reverse=True)
+  return d
 if _name_ == '_main_':
   hist = process_file('words.txt')
   print 'Total Words: ', total_words(hist)
