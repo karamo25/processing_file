@@ -1,0 +1,32 @@
+import string 
+
+def process_file(filename):
+  hist = dict()
+  fp = open(filename)
+  for line in fp:
+    process_line(line, hist)
+    
+  return hist
+  
+def process_line(line, hist):
+  line = line.replace('-', ' ')   #replace the dashes in the text file with whitespace since the dashes are not contain in the punctuation list
+  
+  for words in line:
+    words = words.strip(string.punctuation + string.whitespaces)    #remove all the punctuations and whitespaces from the words
+    words = words.lower()
+    
+    hist[words] = hist.get(words, 0) + 1  #adds the words to the dictionary hist add counts how many times the same word is added 
+    
+  return hist
+  
+def total_words(hist):    #sums up the number of values from the dict hist, which is the total number of word entries
+  return sum(hist.values())
+  
+def total_different_words(hist):    #return the length of the dictionry hist, which is the total number of different words
+  return len(hist)
+  
+if _name_ == '_main_':
+  hist = process_file('words.txt')
+  print 'Total Words: ', total_words(hist)
+  print 'Total Different Word: ', total_different_words(hist)
+  
